@@ -46,3 +46,9 @@ Contrary to theoretical expectations, the Global Memory version often outperform
 *   **240p:** Shared memory was slightly faster because the small template size ($~10$KB) fit easily into the Shared Memory ($64$KB), allowing high occupancy.
 *   **480p:** Shared memory was slower. The template size ($~34$KB) was too large, limiting the Streaming Multiprocessor (SM) to only hold 1 active block. This prevented switching to other blocks while waiting for memory, causing the hardware to be idle.
 *   **720p (Tiled):** The tiled approach introduced significant overhead. The requirement to use `__syncthreads()` inside nested loops forced threads to stop and wait constantly. Additionally, the complex address arithmetic required for tiling outweighed the benefits of caching.
+
+### Conclusion
+
+This project successfully reduced the execution time of the object-tracking program by implementing parallel processing with CUDA. The GPU implementation significantly outperformed the sequential C version across all image resolutions, achieving speedups of 5751.84x for 240p, 6381.39x for 480p, and 6708.97x for 720p. These improvements were made possible by using multiple threads to simultaneously execute tasks, including grayscale conversion, sliding-window patch evaluation, and parallel reduction for maximum-similarity detection.
+
+However, the application of advanced parallelization techniques, such as shared memory and tiling, produced mixed results. The effectiveness of these strategies relies heavily on specific factors, including template size, available shared memory, synchronization overhead, and GPU occupancy. Careful evaluation is required before incorporating these specific optimizations. Overall, the results demonstrate the usefulness of CUDA and GPU processors for accelerating computationally intensive workloads in the field of computer vision.

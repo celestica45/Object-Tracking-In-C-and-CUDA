@@ -11,7 +11,7 @@ To transition from a sequential CPU approach to a parallel GPU approach, the fol
 ### 1. Grayscale Conversion 
 *   **Sequential Approach:** Iterates through every pixel one by one in a nested loop to calculate luminance.
 *   **Parallel Approach:** Utilizes Loop Parallelism (Mapping). A unique CUDA thread is assigned to every single pixel $(x, y)$. All threads execute the RGB-to-Grayscale formula simultaneously. This reduces the time complexity from the sum of all pixel conversions to the time required for a single conversion.
-<img width="313" height="187" alt="image" src="[https://github.com/user-attachments/assets/7ec0fb03-1b5e-4595-8d39-e561446c834a](https://github.com/celestica45/Object-Tracking-In-C-and-CUDA/blob/main/ReadMe%20pictures/2.png?raw=true)" />
+<img width="313" height="187" alt="image" src="[[https://github.com/user-attachments/assets/7ec0fb03-1b5e-4595-8d39-e561446c834a](https://github.com/celestica45/Object-Tracking-In-C-and-CUDA/blob/main/ReadMe%20pictures/2.png?raw=true)](https://github.com/celestica45/Object-Tracking-In-C-and-CUDA/blob/main/ReadMe%20pictures/2.png)" />
 
 ### 2. Similarity Map Generation
 *   **Sequential Approach:** Uses a "Sliding Window" algorithm with an Integrated Linear Search. It calculates the cosine similarity for one patch, compares it to the current maximum, and then slides to the next position.

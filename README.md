@@ -16,6 +16,7 @@ To transition from a sequential CPU approach to a parallel GPU approach, the fol
 ### 2. Similarity Map Generation
 *   **Sequential Approach:** Uses a "Sliding Window" algorithm with an Integrated Linear Search. It calculates the cosine similarity for one patch, compares it to the current maximum, and then slides to the next position.
 *   **Parallel Approach:** Eliminates the sliding window loop. The kernel launches thousands of threads, where each thread is responsible for calculating the similarity score for a specific patch in the frame. All scores are written to a similarity map index simultaneously.
+  ![Alt text](ReadMe_pic/3.png)
 
 ### 3. Maximum Similarity Reduction
 *   **Sequential Approach:** Scans the similarity map linearly to find the highest value.

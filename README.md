@@ -16,16 +16,18 @@ To transition from a sequential CPU approach to a parallel GPU approach, the fol
 ### 2. Similarity Map Generation
 *   **Sequential Approach:** Uses a "Sliding Window" algorithm with an Integrated Linear Search. It calculates the cosine similarity for one patch, compares it to the current maximum, and then slides to the next position.
 *   **Parallel Approach:** Eliminates the sliding window loop. The kernel launches thousands of threads, where each thread is responsible for calculating the similarity score for a specific patch in the frame. All scores are written to a similarity map index simultaneously.
-  ![Alt text](ReadMe_pic/3.png)
+ ![Alt text](ReadMe_pic/3.png)
 
 ### 3. Maximum Similarity Reduction
 *   **Sequential Approach:** Scans the similarity map linearly to find the highest value.
 *   **Parallel Approach:** Uses a Parallel Reduction technique. Threads cooperate within a block to compare values in pairs. This reduces the number of steps required to find the global maximum compared to a linear scan.
+ ![Alt text](ReadMe_pic/5.png)
 
 ### 4. Memory Optimizations
 *   **Shared Memory:** Threads cooperate to load the template image into the GPU's on-chip Shared Memory (L1 Cache) once, aiming to reduce repeated reads from slower Global Memory.
 *   **Tiled Processing (for 720p):** Because large templates do not fit entirely into shared memory, a "Tiling" strategy was implemented. Threads load small $32\times32$ chunks of the template, process them, synchronize using `__syncthreads()`, and move to the next tile.
-
+ ![Alt text](ReadMe_pic/4.png)
+ ![Alt text](ReadMe_pic/6.png)
 ---
 
 ## Results and Discussion

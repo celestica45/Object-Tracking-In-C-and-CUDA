@@ -2,7 +2,7 @@
 
 This project implements a Template-Matching Object Tracking system using SIMT (Single Instruction, Multiple Threads) architecture with CUDA. The goal was to accelerate a sequential C image processing algorithm by parallelizing key functions. The system processes video frames at multiple resolutions (240p, 480p, 720p) to track a target object by comparing a template image against the video frames using Cosine Similarity.
 
-## Presentation Video Link in Youtube:
+## Presentation Video Link in Youtube: https://youtu.be/v-c_heqFHM0
 
 ## Parallel Algorithms Implemented
 

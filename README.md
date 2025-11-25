@@ -25,8 +25,8 @@ To transition from a sequential CPU approach to a parallel GPU approach, the fol
 
 ### 4. Memory Optimizations
 *   **Shared Memory:** Threads cooperate to load the template image into the GPU's on-chip Shared Memory (L1 Cache) once, aiming to reduce repeated reads from slower Global Memory.
+  ![Alt text](ReadMe_pic/4.png)
 *   **Tiled Processing (for 720p):** Because large templates do not fit entirely into shared memory, a "Tiling" strategy was implemented. Threads load small $32\times32$ chunks of the template, process them, synchronize using `__syncthreads()`, and move to the next tile.
- ![Alt text](ReadMe_pic/4.png)
  ![Alt text](ReadMe_pic/6.png)
 ---
 

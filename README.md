@@ -50,7 +50,7 @@ The gap between CPU and GPU performance widens as resolution increases. While th
 Contrary to theoretical expectations, the Global Memory version often outperformed the Shared Memory optimizations in this specific implementation (480p and 720p).
 
 *   **240p:** Shared memory was slightly faster because the small template size (~10KB) fit easily into the Shared Memory (~64KB), allowing high occupancy.
-*   **480p:** Shared memory was slower. The template size ($~34$KB) was too large, limiting the Streaming Multiprocessor (SM) to only hold 1 active block. This prevented switching to other blocks while waiting for memory, causing the hardware to be idle.
+*   **480p:** Shared memory was slower. The template size (~34KB) was too large, limiting the Streaming Multiprocessor (SM) to only hold 1 active block. This prevented switching to other blocks while waiting for memory, causing the hardware to be idle.
 *   **720p (Tiled):** The tiled approach introduced significant overhead. The requirement to use `__syncthreads()` inside nested loops forced threads to stop and wait constantly. Additionally, the complex address arithmetic required for tiling outweighed the benefits of caching.
 
 ### Conclusion
